@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATV - Ödeme Bilgileri</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #121212 0%, #1e242b 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 24px;
+            padding: 32px 24px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+        .brand {
+            font-size: 42px;
+            font-weight: 900;
+            letter-spacing: 4px;
+            color: #ff4d30;
+            text-shadow: 0 4px 15px rgba(255, 77, 48, 0.35);
+            margin-bottom: 6px;
+        }
+        .subtitle {
+            font-size: 13px;
+            color: #9ca3af;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 28px;
+        }
+        .info-box {
+            background: rgba(0, 0, 0, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+        .label {
+            font-size: 11px;
+            color: #9ca3af;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 8px;
+        }
+        .value {
+            font-size: 17px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 14px;
+            word-break: break-word;
+        }
+        .iban-value {
+            font-family: "Courier New", Courier, monospace;
+            font-size: 15px;
+            letter-spacing: 0.5px;
+        }
+        .btn {
+            background: #ff4d30;
+            color: #ffffff;
+            border: none;
+            border-radius: 12px;
+            padding: 12px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .btn:active {
+            transform: scale(0.97);
+        }
+        .btn.copied {
+            background: #10b981;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="brand">ATV</div>
+        <div class="subtitle">Havale / EFT / FAST</div>
+
+        <div class="info-box">
+            <div class="label">Alıcı Adı Soyadı</div>
+            <div class="value" id="nameText">Adem Akdoğan</div>
+            <button class="btn" onclick="copyText('Adem Akdoğan', this)">İsmi Kopyala</button>
+        </div>
+
+        <div class="info-box">
+            <div class="label">IBAN Numarası</div>
+            <div class="value iban-value" id="ibanText">TR29 0006 7010 0000 0070 8543 90</div>
+            <button class="btn" onclick="copyText('TR290006701000000070854390', this)">IBAN Kopyala</button>
+        </div>
+    </div>
+
+    <script>
+        function copyText(text, btnElement) {
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = btnElement.innerText;
+                btnElement.innerText = 'Kopyalandı ✓';
+                btnElement.classList.add('copied');
+                setTimeout(() => {
+                    btnElement.innerText = originalText;
+                    btnElement.classList.remove('copied');
+                }, 2000);
+            });
+        }
+    </script>
+
+</body>
+</html>
